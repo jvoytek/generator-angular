@@ -5,7 +5,7 @@ var fs = require('fs');
 var path = require('path');
 
 function buildRelativePath(fileName){
-  return path.join('decorators', fileName + "Decorator");
+  return path.join('', fileName + ".decorator");
 }
 
 var Generator = module.exports = function Generator(args, options) {

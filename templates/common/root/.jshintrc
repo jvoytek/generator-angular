@@ -1,7 +1,6 @@
 {
   "bitwise": true,
   "browser": true,
-  "curly": true,
   "eqeqeq": true,
   "esnext": true,
   "latedef": true,
@@ -10,7 +9,10 @@
   "strict": true,
   "undef": true,
   "unused": true,
+  "newcap": false,
   "globals": {
-    "angular": false
-  }
+    "angular": false,
+    "_": false
+  },
+  "maxdepth": 3
 }

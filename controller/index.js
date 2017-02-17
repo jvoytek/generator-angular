@@ -6,11 +6,14 @@ var ScriptBase = require('../script-base.js');
 var Generator = module.exports = function Generator() {
   ScriptBase.apply(this, arguments);
 
-  // if the controller name is suffixed with ctrl, remove the suffix
-  // if the controller name is just "ctrl," don't append/remove "ctrl"
-  if (this.name && this.name.toLowerCase() !== 'ctrl' && this.name.substr(-4).toLowerCase() === 'ctrl') {
-    this.name = this.name.slice(0, -4);
+  // if the name is suffixed with extension, remove the suffix
+  // if the name is just the extension don't append/remove
+  var extension = ".controller";
+  if (this.name && this.name.toLowerCase() !== extension && this.name.substr(extension.length*-1).toLowerCase() === extension) {
+    this.name = this.name.slice(0, extension.length*-1);
   }
+
+  this.name = this.name + extension;
 };
 
 util.inherits(Generator, ScriptBase);

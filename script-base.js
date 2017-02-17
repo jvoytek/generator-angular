@@ -104,12 +104,12 @@ Generator.prototype.htmlTemplate = function (src, dest) {
 Generator.prototype.addScriptToIndex = function (script) {
   try {
     var appPath = this.env.options.appPath;
-    var fullPath = path.join(appPath, 'index.html');
+    var fullPath = path.join(appPath, 'index.pug');
     angularUtils.rewriteFile({
       file: fullPath,
-      needle: '<!-- endbuild -->',
+      needle: '// endbuild',
       splicable: [
-        '<script src="scripts/' + script.toLowerCase().replace(/\\/g, '/') + '.js"></script>'
+        'script(src="scripts/' + script.toLowerCase().replace(/\\/g, '/') + '.js")'
       ]
     });
   } catch (e) {
@@ -125,9 +125,9 @@ Generator.prototype.generateSourceAndTest = function (appTemplate, testTemplate,
     this.cameledName = this.classedName;
   }
 
-  this.appTemplate(appTemplate, path.join('scripts', targetDirectory, this.name));
-  this.testTemplate(testTemplate, path.join(targetDirectory, this.name));
+  this.appTemplate(appTemplate, path.join('scripts', '', this.name));
+  this.testTemplate(testTemplate, path.join('', this.name));
   if (!skipAdd) {
-    this.addScriptToIndex(path.join(targetDirectory, this.name));
+    this.addScriptToIndex(path.join('', this.name));
   }
 };
